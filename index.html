@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DAW L2 — Complete Study Guide & Exam Prep</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f8f9fa;
+  --bg3: #f0f4f8;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+  --text: #1a202c;
+  --text2: #4a5568;
+  --text3: #718096;
+  --primary: #2563eb;
+  --primary-light: #dbeafe;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --red: #dc2626;
+  --red-light: #fee2e2;
+  --amber: #d97706;
+  --amber-light: #fef3c7;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --cyan: #0891b2;
+  --cyan-light: #cffafe;
+  --code-bg: #1e293b;
+  --code-text: #e2e8f0;
+  --tag-html: #e05d44;
+  --tag-css: #264de4;
+  --tag-js: #f7df1e;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --bg2: #1e293b;
+  --bg3: #162032;
+  --card: #1e293b;
+  --border: #334155;
+  --border2: #475569;
+  --text: #f1f5f9;
+  --text2: #cbd5e1;
+  --text3: #94a3b8;
+  --primary: #60a5fa;
+  --primary-light: #1e3a5f;
+  --green: #4ade80;
+  --green-light: #14532d;
+  --red: #f87171;
+  --red-light: #450a0a;
+  --amber: #fbbf24;
+  --amber-light: #451a03;
+  --purple: #a78bfa;
+  --purple-light: #2e1065;
+  --cyan: #22d3ee;
+  --cyan-light: #083344;
+  --code-bg: #0d1117;
+  --code-text: #c9d1d9;
+  --shadow: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;transition:background 0.3s,color 0.3s}
+
+/* ── TOPBAR ── */
+#topbar{
+  position:sticky;top:0;z-index:200;
+  background:var(--bg);border-bottom:2px solid var(--primary);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 1.5rem;height:58px;
+  box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:0.75rem}
+.brand-title{font-size:1.1rem;font-weight:700;color:var(--primary)}
+.brand-sub{font-size:0.75rem;color:var(--text3)}
+.top-actions{display:flex;align-items:center;gap:0.75rem}
+.theme-btn{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:0.4rem 0.8rem;
+  cursor:pointer;color:var(--text);font-size:0.85rem;font-weight:600;
+  transition:all 0.2s;
+}
+.theme-btn:hover{background:var(--primary);color:white;border-color:var(--primary)}
+.score-badge{
+  background:var(--primary-light);color:var(--primary);
+  border-radius:999px;padding:0.25rem 0.9rem;font-size:0.8rem;font-weight:700;
+}
+
+/* ── NAV TABS ── */
+#nav-tabs{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  display:flex;overflow-x:auto;scrollbar-width:none;padding:0 1rem;
+  position:sticky;top:58px;z-index:100;
+}
+#nav-tabs::-webkit-scrollbar{display:none}
+.nav-tab{
+  flex-shrink:0;padding:0.85rem 1.1rem;border:none;background:transparent;
+  color:var(--text3);cursor:pointer;font-size:0.82rem;font-weight:600;
+  border-bottom:2px solid transparent;position:relative;bottom:-1px;
+  transition:all 0.2s;white-space:nowrap;
+}
+.nav-tab:hover{color:var(--text)}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+.tab-badge{
+  display:inline-block;background:var(--primary-light);color:var(--primary);
+  border-radius:4px;font-size:0.68rem;padding:1px 5px;margin-left:5px;font-weight:700;
+}
+
+/* ── PAGES ── */
+.page{display:none;padding:2rem 1.5rem;max-width:960px;margin:0 auto}
+.page.active{display:block}
+
+/* ── CHAPTER CARDS ── */
+.chapter{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-lg);margin-bottom:1.5rem;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.chapter-header{
+  padding:1rem 1.25rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.2s;
+  border-left:4px solid transparent;
+}
+.chapter-header:hover{background:var(--bg2)}
+.chapter-header.html-ch{border-left-color:#e05d44}
+.chapter-header.css-ch{border-left-color:#264de4}
+.chapter-header.js-ch{border-left-color:#f59e0b}
+.chapter-header.resp-ch{border-left-color:#0891b2}
+.ch-title-row{display:flex;align-items:center;gap:0.75rem}
+.ch-tag{
+  font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:4px;
+  text-transform:uppercase;letter-spacing:0.05em;
+}
+.ch-tag.html{background:#fde8e4;color:#c0392b}
+.ch-tag.css{background:#e8ecff;color:#2145c1}
+.ch-tag.js{background:#fef9c3;color:#92400e}
+.ch-tag.resp{background:var(--cyan-light);color:var(--cyan)}
+[data-theme="dark"] .ch-tag.html{background:#4a1b0c;color:#f87171}
+[data-theme="dark"] .ch-tag.css{background:#1e1b4b;color:#a5b4fc}
+[data-theme="dark"] .ch-tag.js{background:#451a03;color:#fbbf24}
+.ch-title{font-size:1rem;font-weight:700;color:var(--text)}
+.ch-arrow{color:var(--text3);font-size:0.85rem;transition:transform 0.2s}
+.chapter.open .ch-arrow{transform:rotate(180deg)}
+.chapter-body{display:none;padding:1.25rem;border-top:1px solid var(--border)}
+.chapter.open .chapter-body{display:block}
+
+/* ── CONCEPT BLOCKS ── */
+.concept-block{margin-bottom:1.5rem}
+.concept-title{
+  font-size:0.95rem;font-weight:700;color:var(--text);
+  margin-bottom:0.5rem;padding-bottom:0.3rem;
+  border-bottom:1px solid var(--border);
+}
+.concept-text{font-size:0.9rem;color:var(--text2);margin-bottom:0.75rem;line-height:1.7}
+.concept-text strong{color:var(--text);font-weight:700}
+
+/* ── CODE BLOCKS ── */
+.code-wrap{
+  background:var(--code-bg);border-radius:var(--radius);
+  padding:1rem 1.25rem;margin:0.75rem 0;overflow-x:auto;position:relative;
+}
+.code-label{
+  position:absolute;top:0.4rem;right:0.7rem;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;color:#64748b;
+}
+.code-wrap pre{
+  font-family:'JetBrains Mono','Fira Code',Consolas,monospace;
+  font-size:0.82rem;line-height:1.7;color:var(--code-text);
+  white-space:pre;
+}
+.kw{color:#7c88f5}
+.str{color:#a8ff78}
+.cmt{color:#637074}
+.sel{color:#ffcb6b}
+.prop{color:#82aaff}
+.val{color:#f78c6c}
+.tag-c{color:#f07178}
+.attr{color:#ffcb6b}
+.fn{color:#82aaff}
+.num{color:#f78c6c}
+.bool{color:#ff5370}
+
+/* ── INFO BOXES ── */
+.info-box{
+  border-radius:var(--radius);padding:0.85rem 1rem;margin:0.75rem 0;
+  font-size:0.88rem;line-height:1.6;
+}
+.info-box.tip{background:var(--green-light);border-left:4px solid var(--green)}
+.info-box.warn{background:var(--amber-light);border-left:4px solid var(--amber)}
+.info-box.exam{background:var(--purple-light);border-left:4px solid var(--purple)}
+.info-box.def{background:var(--primary-light);border-left:4px solid var(--primary)}
+.box-icon{font-size:0.9rem;font-weight:700;margin-right:0.4rem}
+.info-box.tip .box-icon{color:var(--green)}
+.info-box.warn .box-icon{color:var(--amber)}
+.info-box.exam .box-icon{color:var(--purple)}
+.info-box.def .box-icon{color:var(--primary)}
+
+/* ── TABLES ── */
+.ref-table{width:100%;border-collapse:collapse;font-size:0.85rem;margin:0.75rem 0}
+.ref-table th{
+  background:var(--bg3);color:var(--text);font-weight:700;
+  padding:0.6rem 0.8rem;text-align:left;border:1px solid var(--border);
+}
+.ref-table td{
+  padding:0.55rem 0.8rem;border:1px solid var(--border);color:var(--text2);
+  vertical-align:top;
+}
+.ref-table tr:hover td{background:var(--bg2)}
+.ref-table code{
+  background:var(--bg3);border-radius:3px;padding:1px 5px;
+  font-size:0.8rem;font-family:'JetBrains Mono',monospace;color:var(--primary);
+}
+
+/* ── INLINE CODE ── */
+code{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:1px 6px;
+  font-family:'JetBrains Mono',monospace;font-size:0.83rem;color:var(--primary);
+}
+
+/* ── TAGS GRID ── */
+.tags-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.6rem;margin:0.75rem 0}
+.tag-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:0.7rem 0.85rem;
+}
+.tag-name{font-family:monospace;font-weight:700;color:var(--primary);font-size:0.9rem}
+.tag-desc{font-size:0.78rem;color:var(--text3);margin-top:2px}
+.tag-type{font-size:0.68rem;font-weight:700;text-transform:uppercase;margin-top:4px}
+.tag-type.block{color:var(--cyan)}
+.tag-type.inline{color:var(--green)}
+
+/* ── SPECIFICITY VISUAL ── */
+.spec-bar{display:flex;flex-direction:column;gap:0.4rem;margin:0.75rem 0}
+.spec-row{
+  display:flex;align-items:center;gap:0.75rem;font-size:0.83rem;padding:0.5rem 0.8rem;
+  border-radius:var(--radius);background:var(--bg2);border:1px solid var(--border);
+}
+.spec-label{flex:1;font-family:monospace;color:var(--text)}
+.spec-score{
+  font-weight:700;padding:2px 10px;border-radius:4px;
+  background:var(--primary-light);color:var(--primary);font-size:0.8rem;min-width:60px;text-align:center;
+}
+.spec-row.highest{background:var(--red-light);border-color:var(--red)}
+.spec-row.highest .spec-score{background:var(--red-light);color:var(--red)}
+
+/* ── QUIZ SECTION ── */
+.quiz-container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
+.quiz-q{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  margin-bottom:1.25rem;box-shadow:var(--shadow);overflow:hidden;
+}
+.q-header{
+  padding:0.85rem 1.1rem;background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-start;gap:0.75rem;
+}
+.q-num{
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  background:var(--primary);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;font-weight:700;
+}
+.q-text{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.5}
+.q-note{font-size:0.75rem;color:var(--text3);margin-top:3px}
+.q-options{padding:0.85rem 1.1rem;display:flex;flex-direction:column;gap:0.5rem}
+.q-opt{
+  display:flex;align-items:flex-start;gap:0.6rem;padding:0.6rem 0.8rem;
+  border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;
+  transition:all 0.15s;background:var(--bg);
+}
+.q-opt:hover:not(.locked){background:var(--bg2)}
+.q-opt input[type="checkbox"]{
+  flex-shrink:0;margin-top:2px;width:16px;height:16px;cursor:pointer;accent-color:var(--primary);
+}
+.q-opt-text{font-size:0.87rem;color:var(--text2)}
+.q-opt.correct{background:var(--green-light);border-color:var(--green)}
+.q-opt.correct .q-opt-text{color:var(--green)}
+.q-opt.wrong{background:var(--red-light);border-color:var(--red)}
+.q-opt.wrong .q-opt-text{color:var(--red)}
+.q-opt.missed{background:var(--amber-light);border-color:var(--amber)}
+.q-opt.missed .q-opt-text{color:var(--amber)}
+.q-footer{padding:0.7rem 1.1rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.check-btn{
+  background:var(--primary);color:white;border:none;border-radius:var(--radius);
+  padding:0.45rem 1.1rem;font-size:0.83rem;font-weight:600;cursor:pointer;
+  transition:all 0.2s;
+}
+.check-btn:hover{opacity:0.9}
+.check-btn:disabled{background:var(--text3);cursor:not-allowed}
+.feedback{font-size:0.83rem;font-weight:600}
+.feedback.ok{color:var(--green)}
+.feedback.bad{color:var(--red)}
+.feedback.partial{color:var(--amber)}
+.q-explanation{
+  margin:0 1.1rem 0.85rem;padding:0.75rem;
+  background:var(--bg2);border-radius:var(--radius);
+  font-size:0.83rem;color:var(--text2);display:none;line-height:1.6;
+}
+.q-explanation.show{display:block}
+.exam-score-card{
+  background:var(--card);border:2px solid var(--primary);border-radius:var(--radius-lg);
+  padding:2rem;text-align:center;margin-bottom:2rem;box-shadow:var(--shadow-md);
+}
+.score-big{font-size:3rem;font-weight:800;color:var(--primary);line-height:1}
+.score-label{color:var(--text3);font-size:0.9rem;margin-top:0.4rem}
+.score-grade{font-size:1.1rem;font-weight:700;margin-top:0.75rem}
+
+/* ── EXAM CONTROLS ── */
+.exam-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:1rem 1.25rem;margin-bottom:1.5rem;box-shadow:var(--shadow);flex-wrap:wrap;gap:0.75rem;
+}
+.exam-info{font-size:0.85rem;color:var(--text2)}
+.exam-info strong{color:var(--text);font-size:0.95rem}
+.exam-actions{display:flex;gap:0.6rem}
+.btn{
+  padding:0.45rem 1rem;border-radius:var(--radius);font-size:0.83rem;font-weight:600;
+  cursor:pointer;border:1px solid var(--border);background:var(--bg2);color:var(--text);
+  transition:all 0.2s;
+}
+.btn:hover{background:var(--bg3)}
+.btn.primary{background:var(--primary);color:white;border-color:var(--primary)}
+.btn.primary:hover{opacity:0.9}
+.btn.success{background:var(--green);color:white;border-color:var(--green)}
+.btn.danger{background:var(--red);color:white;border-color:var(--red)}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{height:6px;background:var(--border);border-radius:3px;margin-bottom:1.5rem;overflow:hidden}
+.progress-fill{height:100%;background:var(--primary);border-radius:3px;transition:width 0.4s}
+
+/* ── TIMER ── */
+.timer{font-size:1.1rem;font-weight:700;font-family:monospace;color:var(--text)}
+.timer.warn-time{color:var(--amber)}
+.timer.danger-time{color:var(--red)}
+
+/* ── SECTIONS ── */
+.section-title{
+  font-size:1.3rem;font-weight:800;color:var(--text);
+  margin-bottom:1.25rem;padding-bottom:0.6rem;
+  border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:0.5rem;
+}
+
+/* ── SUMMARY PAGE ── */
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:1.5rem}
+.summary-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:1.1rem;box-shadow:var(--shadow);
+}
+.summary-card-title{font-weight:700;color:var(--text);font-size:0.9rem;margin-bottom:0.4rem}
+.summary-card-text{font-size:0.82rem;color:var(--text2);line-height:1.6}
+
+/* ── FLEXBOX DEMO ── */
+.flex-demo-wrap{background:var(--bg3);border-radius:var(--radius);padding:1rem;margin:0.75rem 0}
+.flex-demo{display:flex;gap:0.5rem;border:2px dashed var(--border2);border-radius:6px;padding:0.5rem;flex-wrap:wrap;min-height:60px}
+.flex-item{background:var(--primary);color:white;border-radius:4px;padding:0.4rem 0.7rem;font-size:0.8rem;font-weight:700}
+.demo-controls{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.6rem}
+.demo-select{
+  padding:0.3rem 0.5rem;border:1px solid var(--border);border-radius:4px;
+  background:var(--card);color:var(--text);font-size:0.8rem;cursor:pointer;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  #topbar{padding:0 0.75rem}
+  .brand-sub{display:none}
+  .page{padding:1.25rem 0.85rem}
+  .section-title{font-size:1.1rem}
+}
+</style>
+</head>
+<body data-theme="light">
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="brand">
+    <div class="brand-title">📚 DAW L2 — Study Guide</div>
+    <div class="brand-sub">Constantine 2 · HTML · CSS · JS</div>
+  </div>
+  <div class="top-actions">
+    <div class="score-badge" id="total-score">🎯 0 / 0</div>
+    <button class="theme-btn" onclick="toggleTheme()">🌙 Dark</button>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div id="nav-tabs">
+  <button class="nav-tab active" onclick="showPage('html-page',this)">🏷️ HTML <span class="tab-badge">13 topics</span></button>
+  <button class="nav-tab" onclick="showPage('css-page',this)">🎨 CSS <span class="tab-badge">18 topics</span></button>
+  <button class="nav-tab" onclick="showPage('js-page',this)">⚡ JavaScript <span class="tab-badge">15 topics</span></button>
+  <button class="nav-tab" onclick="showPage('resp-page',this)">📱 Responsive <span class="tab-badge">8 topics</span></button>
+  <button class="nav-tab" onclick="showPage('exam1-page',this)">📝 Exam 1</button>
+  <button class="nav-tab" onclick="showPage('exam2-page',this)">📝 Exam 2</button>
+  <button class="nav-tab" onclick="showPage('exam3-page',this)">📝 Exam 3</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ HTML PAGE -->
+<div class="page active" id="html-page">
+  <div class="section-title">🏷️ HTML — HyperText Markup Language</div>
+
+  <!-- What is HTML -->
+  <div class="chapter open">
+    <div class="chapter-header html-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag html">HTML</span>
+        <span class="ch-title">01 — What is HTML? Structure of a Web Page</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-block">
+        <div class="concept-title">Definition</div>
+        <div class="concept-text"><strong>HTML (HyperText Markup Language)</strong> is the <strong>skeleton</strong> of every web page. It tells the browser: "here is a heading", "here is a paragraph", "here is an image". Think of HTML as the bones, CSS as the skin/clothes, and JavaScript as the muscles that make it move.</div>
+        <div class="code-wrap">
+          <div class="code-label">HTML</div>
+          <pre><span class="cmt">&lt;!-- Basic structure of every HTML file --&gt;</span>
+<span class="tag-c">&lt;!DOCTYPE html&gt;</span>               <span class="cmt">&lt;!-- Tells browser: use HTML5 --&gt;</span>
+<span class="tag-c">&lt;html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="tag-c">&gt;</span>               <span class="cmt">&lt;!-- Root element, lang = language --&gt;</span>
+  <span class="tag-c">&lt;head&gt;</span>                        <span class="cmt">&lt;!-- Invisible metadata zone --&gt;</span>
+    <span class="tag-c">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag-c">/&gt;</span>     <span class="cmt">&lt;!-- Accept all characters (Arabic ✓) --&gt;</span>
+    <span class="tag-c">&lt;meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span>
+          <span class="attr">content</span>=<span class="str">"width=device-width, initial-scale=1.0"</span><span class="tag-c">/&gt;</span>
+    <span class="tag-c">&lt;title&gt;</span>Page Title<span class="tag-c">&lt;/title&gt;</span>
+    <span class="tag-c">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"style.css"</span><span class="tag-c">/&gt;</span>
+  <span class="tag-c">&lt;/head&gt;</span>
+  <span class="tag-c">&lt;body&gt;</span>                        <span class="cmt">&lt;!-- Everything VISIBLE goes here --&gt;</span>
+    <span class="tag-c">&lt;h1&gt;</span>Hello World!<span class="tag-c">&lt;/h1&gt;</span>
+    <span class="tag-c">&lt;p&gt;</span>This is a paragraph.<span class="tag-c">&lt;/p&gt;</span>
+  <span class="tag-c">&lt;/body&gt;</span>
+<span class="tag-c">&lt;/html&gt;</span></pre>
+        </div>
+        <div class="info-box exam"><span class="box-icon">⚠️ EXAM:</span> The <code>&lt;viewport&gt;</code> meta tag is <strong>essential for responsive design</strong>. Without it, mobile browsers zoom out and show the desktop version. Always include it!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Block vs Inline -->
+  <div class="chapter">
+    <div class="chapter-header html-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag html">HTML</span>
+        <span class="ch-title">02 — Block vs Inline Elements (VERY Important for Exam!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">Every HTML element is either <strong>block-level</strong> or <strong>inline</strong>. This is one of the most tested topics!</div>
+      <table class="ref-table">
+        <tr><th>Feature</th><th>Block Element</th><th>Inline Element</th></tr>
+        <tr><td>Starts on</td><td>New line (always)</td><td>Same line as text</td></tr>
+        <tr><td>Width</td><td>Full width of parent</td><td>Only as wide as content</td></tr>
+        <tr><td>Can have width/height CSS?</td><td>✅ Yes</td><td>❌ No (ignored)</td></tr>
+        <tr><td>Can have margin/padding?</td><td>✅ All sides</td><td>⚠️ Only left/right</td></tr>
+        <tr><td>Examples</td><td><code>&lt;div&gt; &lt;p&gt; &lt;h1-h6&gt; &lt;section&gt; &lt;article&gt; &lt;nav&gt; &lt;header&gt; &lt;footer&gt; &lt;ul&gt; &lt;ol&gt; &lt;table&gt;</code></td><td><code>&lt;span&gt; &lt;a&gt; &lt;img&gt; &lt;strong&gt; &lt;em&gt; &lt;label&gt; &lt;button&gt; &lt;input&gt;</code></td></tr>
+      </table>
+      <div class="info-box warn"><span class="box-icon">⚠️</span> The exam asked: Which are inline elements? Answer: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>. NOT <code>&lt;div&gt;</code> or <code>&lt;section&gt;</code>!</div>
+      <div class="info-box tip"><span class="box-icon">✅ TIP:</span> <code>&lt;button&gt;</code> and <code>&lt;label&gt;</code> are <strong>inline</strong> elements. <code>&lt;h2&gt;</code>, <code>&lt;nav&gt;</code> are <strong>block</strong> elements. This was tested in 2025 exam Q24!</div>
+    </div>
+  </div>
+
+  <!-- Semantic HTML -->
+  <div class="chapter">
+    <div class="chapter-header html-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag html">HTML</span>
+        <span class="ch-title">03 — Semantic HTML5 Elements (🔥 Heavily Tested!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text"><strong>Semantic elements</strong> have meaning — they tell the browser AND the developer what kind of content is inside. Non-semantic elements like <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> say nothing about their content.</div>
+      <div class="tags-grid">
+        <div class="tag-card"><div class="tag-name">&lt;header&gt;</div><div class="tag-desc">Page/section heading area (logo, title, nav)</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;nav&gt;</div><div class="tag-desc">Navigation links menu</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;main&gt;</div><div class="tag-desc">Main content of the page (only ONE per page)</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;section&gt;</div><div class="tag-desc">A thematic group of content</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;article&gt;</div><div class="tag-desc">Self-contained content (blog post, news article)</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;aside&gt;</div><div class="tag-desc">Sidebar / complementary content</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;footer&gt;</div><div class="tag-desc">Bottom of page/section (copyright, links)</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;figure&gt;</div><div class="tag-desc">Image with optional caption</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;div&gt;</div><div class="tag-desc">Generic container — NOT semantic!</div><div class="tag-type block">BLOCK</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;span&gt;</div><div class="tag-desc">Generic inline container — NOT semantic!</div><div class="tag-type inline">INLINE</div></div>
+      </div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM:</span> <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> are NOT semantic — they are "generic containers". <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code> ARE semantic. Also: <code>&lt;maincontent&gt;</code>, <code>&lt;box&gt;</code>, <code>&lt;sidebar&gt;</code>, <code>&lt;sectioned&gt;</code> — these DO NOT EXIST!</div>
+      <div class="concept-text"><strong>Why use semantic HTML?</strong></div>
+      <div class="info-box def"><span class="box-icon">📌</span> 1. Improves <strong>accessibility</strong> (screen readers know what each part is). 2. Helps <strong>SEO</strong> (Google understands your content better). 3. Makes code <strong>more readable</strong> for other developers.</div>
+    </div>
+  </div>
+
+  <!-- Images, Links, Lists, Forms -->
+  <div class="chapter">
+    <div class="chapter-header html-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag html">HTML</span>
+        <span class="ch-title">04 — Common Tags: Images, Links, Lists, Forms</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-title">Images — <code>&lt;img&gt;</code></div>
+      <div class="concept-text">The <code>&lt;img&gt;</code> tag has NO closing tag. Valid attributes: <strong>src</strong> (source URL), <strong>alt</strong> (alternative text), <strong>height</strong>, <strong>width</strong>. NOT valid: <code>href</code>, <code>value</code>.</div>
+      <div class="code-wrap"><div class="code-label">HTML</div><pre><span class="tag-c">&lt;img</span> <span class="attr">src</span>=<span class="str">"photo.jpg"</span> <span class="attr">alt</span>=<span class="str">"A beautiful photo"</span> <span class="attr">width</span>=<span class="str">"300"</span> <span class="attr">height</span>=<span class="str">"200"</span><span class="tag-c">/&gt;</span></pre></div>
+      <div class="concept-title">Links — <code>&lt;a&gt;</code></div>
+      <div class="concept-text">The <code>href</code> attribute defines the URL. <code>&lt;a&gt;</code> is an <strong>inline</strong> element.</div>
+      <div class="code-wrap"><div class="code-label">HTML</div><pre><span class="tag-c">&lt;a</span> <span class="attr">href</span>=<span class="str">"https://google.com"</span> <span class="attr">target</span>=<span class="str">"_blank"</span><span class="tag-c">&gt;</span>Visit Google<span class="tag-c">&lt;/a&gt;</span></pre></div>
+      <div class="concept-title">Lists</div>
+      <div class="code-wrap"><div class="code-label">HTML</div><pre><span class="cmt">&lt;!-- Unordered List (bullets) --&gt;</span>
+<span class="tag-c">&lt;ul&gt;</span>
+  <span class="tag-c">&lt;li&gt;</span>Apple<span class="tag-c">&lt;/li&gt;</span>
+  <span class="tag-c">&lt;li&gt;</span>Banana<span class="tag-c">&lt;/li&gt;</span>
+<span class="tag-c">&lt;/ul&gt;</span>
+
+<span class="cmt">&lt;!-- Ordered List (numbers) --&gt;</span>
+<span class="tag-c">&lt;ol&gt;</span>
+  <span class="tag-c">&lt;li&gt;</span>First step<span class="tag-c">&lt;/li&gt;</span>
+  <span class="tag-c">&lt;li&gt;</span>Second step<span class="tag-c">&lt;/li&gt;</span>
+<span class="tag-c">&lt;/ol&gt;</span></pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM:</span> Valid list tags: <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>. FAKE tags: <code>&lt;itemlist&gt;</code>, <code>&lt;listgroup&gt;</code>, <code>&lt;sectionlist&gt;</code> — these DO NOT EXIST.</div>
+    </div>
+  </div>
+
+  <!-- HTTP Methods -->
+  <div class="chapter">
+    <div class="chapter-header html-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag html">HTML</span>
+        <span class="ch-title">05 — HTTP Methods & Web Concepts</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <table class="ref-table">
+        <tr><th>Method</th><th>Use</th><th>Valid?</th></tr>
+        <tr><td><code>GET</code></td><td>Request/read data from server</td><td>✅ Valid</td></tr>
+        <tr><td><code>POST</code></td><td>Send data to server (forms, login)</td><td>✅ Valid</td></tr>
+        <tr><td><code>PUT</code></td><td>Update existing data</td><td>✅ Valid</td></tr>
+        <tr><td><code>DELETE</code></td><td>Delete data from server</td><td>✅ Valid</td></tr>
+        <tr><td><code>FETCH</code></td><td>NOT an HTTP method (it's a JS function)</td><td>❌ Invalid</td></tr>
+      </table>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM 2025 Q2:</span> Valid HTTP methods: GET, POST, PUT, DELETE. <strong>FETCH is NOT an HTTP method!</strong> It's a JavaScript function.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ CSS PAGE -->
+<div class="page" id="css-page">
+  <div class="section-title">🎨 CSS — Cascading Style Sheets</div>
+
+  <!-- CSS Basics -->
+  <div class="chapter open">
+    <div class="chapter-header css-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag css">CSS</span>
+        <span class="ch-title">01 — CSS Basics: Selectors, Properties, Values</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">A CSS rule has 3 parts: <strong>selector</strong> (who to target), <strong>property</strong> (what to change), <strong>value</strong> (the new value).</div>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="cmt">/* selector { property: value; } */</span>
+<span class="sel">h2</span> { <span class="prop">color</span>: <span class="val">darkblue</span>; }
+<span class="cmt">/* ^selector  ^property ^value */</span>
+
+<span class="cmt">/* Multiple properties in one rule */</span>
+<span class="sel">p</span> {
+  <span class="prop">color</span>: <span class="val">red</span>;
+  <span class="prop">font-size</span>: <span class="val">16px</span>;
+  <span class="prop">line-height</span>: <span class="val">1.6</span>;
+}
+
+<span class="cmt">/* Grouping: apply same style to multiple selectors */</span>
+<span class="sel">h1</span>, <span class="sel">h2</span>, <span class="sel">h3</span> { <span class="prop">color</span>: <span class="val">blue</span>; }</pre></div>
+      <div class="concept-title">All CSS Selectors</div>
+      <table class="ref-table">
+        <tr><th>Selector</th><th>Example</th><th>What it targets</th></tr>
+        <tr><td>Universal</td><td><code>*</code></td><td>ALL elements on page</td></tr>
+        <tr><td>Type/Element</td><td><code>p</code>, <code>h1</code>, <code>div</code></td><td>All elements of that HTML tag</td></tr>
+        <tr><td>Class</td><td><code>.card</code></td><td>Elements with class="card"</td></tr>
+        <tr><td>ID</td><td><code>#header</code></td><td>One unique element with id="header"</td></tr>
+        <tr><td>Attribute</td><td><code>[type="text"]</code></td><td>Elements with matching attribute</td></tr>
+        <tr><td>Descendant</td><td><code>div p</code></td><td>All &lt;p&gt; inside any &lt;div&gt;</td></tr>
+        <tr><td>Child</td><td><code>ul &gt; li</code></td><td>Direct children only</td></tr>
+        <tr><td>Adjacent Sibling</td><td><code>h2 + p</code></td><td>First &lt;p&gt; immediately after &lt;h2&gt;</td></tr>
+        <tr><td>General Sibling</td><td><code>h2 ~ p</code></td><td>All &lt;p&gt; after &lt;h2&gt; at same level</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Specificity & Cascade -->
+  <div class="chapter">
+    <div class="chapter-header css-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag css">CSS</span>
+        <span class="ch-title">02 — Specificity & The Cascade (🔥 Exam Favorite!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">When two rules fight over the same element, the browser uses <strong>specificity</strong> to decide which one wins. Higher specificity = wins.</div>
+      <div class="spec-bar">
+        <div class="spec-row highest"><div class="spec-label">!important — overrides EVERYTHING</div><div class="spec-score">∞ WINS</div></div>
+        <div class="spec-row"><div class="spec-label">Inline style: <code>style="color:red"</code></div><div class="spec-score">1,0,0,0</div></div>
+        <div class="spec-row"><div class="spec-label">ID selector: <code>#header</code></div><div class="spec-score">0,1,0,0</div></div>
+        <div class="spec-row"><div class="spec-label">Class <code>.card</code> / Attribute <code>[type]</code> / Pseudo-class <code>:hover</code></div><div class="spec-score">0,0,1,0</div></div>
+        <div class="spec-row"><div class="spec-label">Type selector <code>p</code>, <code>h1</code> / Pseudo-element <code>::before</code></div><div class="spec-score">0,0,0,1</div></div>
+      </div>
+      <div class="info-box warn"><span class="box-icon">⚠️</span> If specificity is EQUAL, the <strong>LAST rule in the file wins</strong> (cascade). That's the "C" in CSS.</div>
+      <div class="concept-title">3 Ways to Include CSS</div>
+      <div class="code-wrap"><div class="code-label">HTML</div><pre><span class="cmt">&lt;!-- 1. EXTERNAL (Best Practice!) --&gt;</span>
+<span class="tag-c">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"style.css"</span><span class="tag-c">/&gt;</span>
+
+<span class="cmt">&lt;!-- 2. INTERNAL (inside &lt;head&gt;) --&gt;</span>
+<span class="tag-c">&lt;style&gt;</span>
+  <span class="sel">body</span> { <span class="prop">background</span>: <span class="val">white</span>; }
+<span class="tag-c">&lt;/style&gt;</span>
+
+<span class="cmt">&lt;!-- 3. INLINE (on the element itself) --&gt;</span>
+<span class="tag-c">&lt;h1</span> <span class="attr">style</span>=<span class="str">"color: red; font-size: 2rem;"</span><span class="tag-c">&gt;</span>Hello<span class="tag-c">&lt;/h1&gt;</span>
+
+<span class="cmt">&lt;!-- 4. @import inside CSS file --&gt;</span>
+<span class="cmt">/* @import url("other.css"); */</span></pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM:</span> Valid CSS inclusion methods: inline style, &lt;link&gt; external, &lt;style&gt; internal, @import. INVALID: embedding CSS in <code>&lt;script&gt;</code> tag!</div>
+    </div>
+  </div>
+
+  <!-- Box Model -->
+  <div class="chapter">
+    <div class="chapter-header css-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag css">CSS</span>
+        <span class="ch-title">03 — The CSS Box Model (🔥 Always on Exam!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">Every HTML element is a rectangular box with 4 layers: <strong>Content → Padding → Border → Margin</strong></div>
+      <div style="display:flex;justify-content:center;margin:1rem 0">
+        <div style="background:var(--amber-light);border:2px dashed var(--amber);padding:16px;border-radius:8px;text-align:center;font-size:0.8rem;color:var(--text2)">
+          <div style="font-weight:700;color:var(--amber);margin-bottom:8px">MARGIN (transparent space outside)</div>
+          <div style="background:var(--cyan-light);border:2px solid var(--cyan);padding:12px;border-radius:4px">
+            <div style="font-weight:700;color:var(--cyan);margin-bottom:8px">BORDER</div>
+            <div style="background:var(--green-light);border:2px dashed var(--green);padding:10px;border-radius:4px">
+              <div style="font-weight:700;color:var(--green);margin-bottom:8px">PADDING (space inside border)</div>
+              <div style="background:var(--primary-light);padding:10px;border-radius:4px;font-weight:700;color:var(--primary)">CONTENT (text, images)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="sel">.box</span> {
+  <span class="cmt">/* CONTENT */</span>
+  <span class="prop">width</span>: <span class="val">300px</span>;
+  <span class="prop">height</span>: <span class="val">200px</span>;
+
+  <span class="cmt">/* PADDING — space between content and border */</span>
+  <span class="prop">padding</span>: <span class="val">20px</span>;            <span class="cmt">/* all 4 sides */</span>
+  <span class="prop">padding</span>: <span class="val">10px 20px</span>;       <span class="cmt">/* top/bottom left/right */</span>
+  <span class="prop">padding-top</span>: <span class="val">10px</span>;        <span class="cmt">/* one side only */</span>
+
+  <span class="cmt">/* BORDER */</span>
+  <span class="prop">border</span>: <span class="val">2px solid blue</span>;   <span class="cmt">/* width style color */</span>
+
+  <span class="cmt">/* MARGIN — space OUTSIDE the border */</span>
+  <span class="prop">margin</span>: <span class="val">auto</span>;              <span class="cmt">/* centers block element */</span>
+  <span class="prop">margin</span>: <span class="val">0 auto</span>;           <span class="cmt">/* top/bottom=0, left/right=auto */</span>
+
+  <span class="cmt">/* IMPORTANT: box-sizing */</span>
+  <span class="prop">box-sizing</span>: <span class="val">border-box</span>;   <span class="cmt">/* width includes padding+border */</span>
+}</pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q21 (2024):</span> To reduce space between content and border → use <code>padding</code>. Margin is for OUTSIDE the border. Box model properties: <strong>padding, margin, border</strong>. NOT: color, text-align!</div>
+    </div>
+  </div>
+
+  <!-- Display & Position -->
+  <div class="chapter">
+    <div class="chapter-header css-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag css">CSS</span>
+        <span class="ch-title">04 — Display, Position & Float (🔥 Exam Favorite!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-title">display property</div>
+      <table class="ref-table">
+        <tr><th>Value</th><th>What it does</th><th>Exam note</th></tr>
+        <tr><td><code>block</code></td><td>Full width, starts on new line</td><td>Default for div, p, h1-h6</td></tr>
+        <tr><td><code>inline</code></td><td>Flows in text, ignores width/height</td><td>Default for span, a, strong</td></tr>
+        <tr><td><code>inline-block</code></td><td>Flows in text BUT respects width/height</td><td>Best of both worlds</td></tr>
+        <tr><td><code>none</code></td><td>Element completely removed (invisible + takes no space)</td><td>vs visibility:hidden (hidden but takes space)</td></tr>
+        <tr><td><code>flex</code></td><td>Enables Flexbox on container</td><td>Children = flex items</td></tr>
+        <tr><td><code>grid</code></td><td>Enables CSS Grid on container</td><td>2D layout</td></tr>
+      </table>
+      <div class="concept-title">position property</div>
+      <table class="ref-table">
+        <tr><th>Value</th><th>What it does</th><th>Key fact</th></tr>
+        <tr><td><code>static</code></td><td>Default — normal document flow. top/left have NO effect.</td><td>Cannot use z-index</td></tr>
+        <tr><td><code>relative</code></td><td>Stays in flow but offset from OWN normal position</td><td>Still takes space in layout</td></tr>
+        <tr><td><code>absolute</code></td><td>REMOVED from flow. Positioned relative to nearest positioned ancestor</td><td>If no ancestor: positions to &lt;body&gt;</td></tr>
+        <tr><td><code>fixed</code></td><td>Removed from flow. Positioned relative to VIEWPORT. Stays when scrolling.</td><td>Great for navbars. Exam: bottom:0; right:0</td></tr>
+        <tr><td><code>sticky</code></td><td>Acts like relative UNTIL scroll threshold, then sticks like fixed</td><td>Needs top/left value to work</td></tr>
+      </table>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="cmt">/* EXAM Q24 — Fix element to bottom-right corner */</span>
+<span class="sel">.element</span> {
+  <span class="prop">position</span>: <span class="val">fixed</span>;
+  <span class="prop">bottom</span>: <span class="val">0</span>;      <span class="cmt">/* ← Answer A */</span>
+  <span class="prop">right</span>: <span class="val">0</span>;       <span class="cmt">/* ← Answer C */</span>
+}
+
+<span class="cmt">/* To appear ABOVE all other elements */</span>
+<span class="sel">.element</span> {
+  <span class="prop">position</span>: <span class="val">relative</span>;  <span class="cmt">/* or absolute/fixed — NOT static! */</span>
+  <span class="prop">z-index</span>: <span class="val">999</span>;         <span class="cmt">/* higher = on top */</span>
+}</pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q12 (2025):</span> position:absolute — ✅ removed from flow, ✅ positioned relative to nearest positioned ancestor, ✅ if no ancestor = relative to &lt;body&gt;. ❌ does NOT scroll with page, ❌ does NOT float automatically.</div>
+      <div class="concept-title">float property</div>
+      <div class="concept-text"><code>float</code> is used to wrap text around images. Floated elements are removed from the normal flow. Use <code>clear: both</code> after floats to avoid layout issues.</div>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="sel">.element</span> {
+  <span class="prop">float</span>: <span class="val">left</span>;          <span class="cmt">/* text wraps around right side */</span>
+  <span class="prop">margin-right</span>: <span class="val">20px</span>;  <span class="cmt">/* space between float and text */</span>
+}
+<span class="cmt">/* After floated elements: */</span>
+<span class="sel">.clearfix</span> { <span class="prop">clear</span>: <span class="val">both</span>; }</pre></div>
+    </div>
+  </div>
+
+  <!-- Flexbox -->
+  <div class="chapter">
+    <div class="chapter-header css-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag css">CSS</span>
+        <span class="ch-title">05 — Flexbox (🔥 MOST Important CSS Topic!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text"><strong>Flexbox</strong> is a 1-dimensional layout system (row OR column). Add <code>display: flex</code> to the <strong>parent container</strong>, and all direct children become flex items.</div>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="cmt">/* PARENT CONTAINER properties */</span>
+<span class="sel">.container</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+
+  <span class="cmt">/* Direction */</span>
+  <span class="prop">flex-direction</span>: <span class="val">row</span>;          <span class="cmt">/* row | column | row-reverse | column-reverse */</span>
+
+  <span class="cmt">/* Main axis alignment (horizontal if row) */</span>
+  <span class="prop">justify-content</span>: <span class="val">space-between</span>; <span class="cmt">/* flex-start | center | space-around | space-evenly */</span>
+
+  <span class="cmt">/* Cross axis alignment (vertical if row) */</span>
+  <span class="prop">align-items</span>: <span class="val">center</span>;           <span class="cmt">/* flex-start | flex-end | stretch | baseline */</span>
+
+  <span class="cmt">/* Wrapping */</span>
+  <span class="prop">flex-wrap</span>: <span class="val">wrap</span>;               <span class="cmt">/* nowrap | wrap | wrap-reverse */</span>
+
+  <span class="cmt">/* Gap between items */</span>
+  <span class="prop">gap</span>: <span class="val">1rem</span>;
+}
+
+<span class="cmt">/* CHILD ITEMS properties */</span>
+<span class="sel">.item</span> {
+  <span class="prop">flex-grow</span>: <span class="val">1</span>;     <span class="cmt">/* grow to fill available space */</span>
+  <span class="prop">flex-shrink</span>: <span class="val">1</span>;   <span class="cmt">/* shrink if needed */</span>
+  <span class="prop">flex-basis</span>: <span class="val">200px</span>; <span class="cmt">/* starting size */</span>
+  <span class="prop">align-self</span>: <span class="val">flex-end</span>; <span class="cmt">/* override align-items for this item */</span>
+  <span class="prop">order</span>: <span class="val">2</span>;           <span class="cmt">/* change visual order */</span>
+}</pre></div>
+
+      <!-- INTERACTIVE FLEXBOX DEMO -->
+      <div class="flex-demo-wrap">
+        <div class="flex-demo" id="flex-demo">
+          <div class="flex-item">Item 1</div>
+          <div class="flex-item">Item 2</div>
+          <div class="flex-item">Item 3</div>
+          <div class="flex-item">Item 4</div>
+        </div>
+        <div class="demo-controls">
+          <label style="font-size:0.8rem;color:var(--text2)">justify-content:</label>
+          <select class="demo-select" onchange="updateFlex('justifyContent',this.value)">
+            <option>flex-start</option><option>center</option><option>flex-end</option>
+            <option>space-between</option><option>space-around</option><option>space-evenly</option>
+          </select>
+          <label style="font-size:0.8rem;color:var(--text2)">align-items:</label>
+          <select class="demo-select" onchange="updateFlex('alignItems',this.value)">
+            <option>flex-start</option><option>center</option><option>flex-end</option><option>stretch</option>
+          </select>
+          <label style="font-size:0.8rem;color:var(--text2)">direction:</label>
+          <select class="demo-select" onchange="updateFlex('flexDirection',this.value)">
+            <option>row</option><option>column</option><option>row-reverse</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q3 (2025):</span> ✅ Flexbox is <strong>one-dimensional</strong>. ✅ align-items aligns along the <strong>cross axis</strong>. ❌ justify-content does NOT control vertical alignment (it's main axis). ❌ Flexbox is NOT only for inline elements.</div>
+      <div class="info-box tip"><span class="box-icon">✅</span> To center items both horizontally AND vertically: <code>justify-content: center; align-items: center;</code> — this was Exam 2024 Q22!</div>
+    </div>
+  </div>
+
+  <!-- CSS Grid -->
+  <div class="chapter">
+    <div class="chapter-header css-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag css">CSS</span>
+        <span class="ch-title">06 — CSS Grid, Variables, Transitions</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text"><strong>CSS Grid</strong> is 2-dimensional (rows AND columns simultaneously). Better for page-level layouts. Use Flexbox for components, Grid for full layouts.</div>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="sel">.grid</span> {
+  <span class="prop">display</span>: <span class="val">grid</span>;
+  <span class="prop">grid-template-columns</span>: <span class="val">1fr 2fr 1fr</span>;    <span class="cmt">/* 3 columns */</span>
+  <span class="prop">grid-template-columns</span>: <span class="val">repeat(3, 1fr)</span>; <span class="cmt">/* same, cleaner */</span>
+  <span class="prop">gap</span>: <span class="val">1rem</span>;
+
+  <span class="cmt">/* Responsive without media queries! */</span>
+  <span class="prop">grid-template-columns</span>: <span class="val">repeat(auto-fit, minmax(200px, 1fr))</span>;
+}
+
+<span class="cmt">/* CSS Variables (Custom Properties) */</span>
+<span class="sel">:root</span> {
+  <span class="prop">--primary-color</span>: <span class="val">#2563eb</span>;
+  <span class="prop">--spacing</span>: <span class="val">1rem</span>;
+}
+<span class="sel">.card</span> {
+  <span class="prop">background</span>: <span class="val">var(--primary-color)</span>;  <span class="cmt">/* use with var() */</span>
+  <span class="prop">padding</span>: <span class="val">var(--spacing)</span>;
+}
+
+<span class="cmt">/* Transitions */</span>
+<span class="sel">.btn</span> {
+  <span class="prop">background</span>: <span class="val">blue</span>;
+  <span class="prop">transition</span>: <span class="val">all 0.3s ease</span>;  <span class="cmt">/* property duration timing */</span>
+}
+<span class="sel">.btn:hover</span> { <span class="prop">background</span>: <span class="val">darkblue</span>; }</pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ JS PAGE -->
+<div class="page" id="js-page">
+  <div class="section-title">⚡ JavaScript — Making Pages Interactive</div>
+
+  <!-- JS Basics -->
+  <div class="chapter open">
+    <div class="chapter-header js-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag js">JS</span>
+        <span class="ch-title">01 — Variables: var, let, const</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">JavaScript has 3 ways to declare variables. The exam LOVES this topic!</div>
+      <table class="ref-table">
+        <tr><th>Keyword</th><th>Can change value?</th><th>Scope</th><th>Must initialize?</th></tr>
+        <tr><td><code>var</code></td><td>✅ Yes</td><td>Function scope</td><td>❌ No</td></tr>
+        <tr><td><code>let</code></td><td>✅ Yes</td><td>Block scope {}</td><td>❌ No</td></tr>
+        <tr><td><code>const</code></td><td>❌ No (after declaration)</td><td>Block scope {}</td><td>✅ Yes</td></tr>
+      </table>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="kw">var</span> x = <span class="num">5</span>;         <span class="cmt">// old way, avoid</span>
+x = <span class="num">10</span>;            <span class="cmt">// ✅ can update</span>
+
+<span class="kw">let</span> score = <span class="num">0</span>;     <span class="cmt">// modern, use for changing values</span>
+score = <span class="num">1</span>;         <span class="cmt">// ✅ can update</span>
+
+<span class="kw">const</span> PI = <span class="num">3.14</span>;   <span class="cmt">// use for values that never change</span>
+<span class="cmt">// PI = 5; ← ❌ ERROR! Cannot reassign const</span></pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q39 (2024):</span> ✅ You can't change const after declaration. ✅ const must be initialized when declared. ✅ var and let can be updated. ✅ Use let for values that will change.</div>
+      <div class="concept-title">Data Types</div>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="kw">typeof</span> <span class="bool">true</span>          <span class="cmt">// "boolean" ← ✅ JS data type</span>
+<span class="kw">typeof</span> <span class="num">42</span>            <span class="cmt">// "number" (no "Float" type in JS!)</span>
+<span class="kw">typeof</span> <span class="str">"hello"</span>       <span class="cmt">// "string"</span>
+<span class="kw">typeof</span> <span class="kw">null</span>          <span class="cmt">// "object" (special case!) ← ✅ Null is a type</span>
+<span class="kw">typeof</span> { }           <span class="cmt">// "object" ← ✅ Object is a type</span>
+<span class="kw">typeof</span> <span class="kw">undefined</span>     <span class="cmt">// "undefined" ← ✅ Undefined is a type</span>
+<span class="cmt">// ❌ "Float" does NOT exist as a JS type</span></pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q4 (2025):</span> Valid JS data types: Boolean, Null, Object, Undefined. <strong>Float is NOT a JavaScript data type!</strong> Numbers are just "number".</div>
+    </div>
+  </div>
+
+  <!-- DOM Manipulation -->
+  <div class="chapter">
+    <div class="chapter-header js-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag js">JS</span>
+        <span class="ch-title">02 — DOM Manipulation (🔥 Most Important JS Topic!)</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">The <strong>DOM (Document Object Model)</strong> is JavaScript's way of accessing and changing HTML. Think of the HTML page as a tree, and JavaScript can grab any branch and change it.</div>
+      <div class="concept-title">Selecting Elements</div>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="cmt">// By ID — returns ONE element</span>
+<span class="kw">const</span> title = document.<span class="fn">getElementById</span>(<span class="str">'main-title'</span>);
+
+<span class="cmt">// By class name — returns HTMLCollection (multiple)</span>
+<span class="kw">const</span> cards = document.<span class="fn">getElementsByClassName</span>(<span class="str">'card'</span>);
+
+<span class="cmt">// By tag name — returns all &lt;p&gt; tags</span>
+<span class="kw">const</span> paras = document.<span class="fn">getElementsByTagName</span>(<span class="str">'p'</span>);
+
+<span class="cmt">// querySelector — CSS selector, returns FIRST match</span>
+<span class="kw">const</span> btn = document.<span class="fn">querySelector</span>(<span class="str">'.btn'</span>);     <span class="cmt">// class</span>
+<span class="kw">const</span> hd = document.<span class="fn">querySelector</span>(<span class="str">'#header'</span>);   <span class="cmt">// id</span>
+
+<span class="cmt">// querySelectorAll — returns ALL matches</span>
+<span class="kw">const</span> allBtns = document.<span class="fn">querySelectorAll</span>(<span class="str">'.btn'</span>);</pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q34 (2024):</span> To get elements by class: <code>document.getElementsByClassName('name')</code>. FAKE methods: <code>document.modifyElement()</code>, <code>window.selectElement()</code> — these don't exist!</div>
+      <div class="concept-title">Changing Content</div>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="kw">const</span> el = document.<span class="fn">getElementById</span>(<span class="str">'box'</span>);
+
+<span class="cmt">// Change HTML content (can include tags)</span>
+el.innerHTML = <span class="str">"&lt;strong&gt;Hello&lt;/strong&gt;"</span>;  <span class="cmt">// ✅ Valid</span>
+
+<span class="cmt">// Change text only (no tags)</span>
+el.textContent = <span class="str">"Hello"</span>;                  <span class="cmt">// ✅ Valid</span>
+
+<span class="cmt">// For input fields</span>
+el.value = <span class="str">"Hello"</span>;                        <span class="cmt">// ✅ For inputs</span>
+
+<span class="cmt">// ❌ These DON'T EXIST in JS:</span>
+<span class="cmt">// el.setText("Hello")   ← FAKE</span>
+<span class="cmt">// document.write() — exists but avoid (replaces whole page)</span></pre></div>
+      <div class="concept-title">Changing Styles</div>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="kw">const</span> el = document.<span class="fn">getElementById</span>(<span class="str">'box'</span>);
+
+<span class="cmt">// Method 1: style property (camelCase!)</span>
+el.style.color = <span class="str">"red"</span>;
+el.style.backgroundColor = <span class="str">"blue"</span>;  <span class="cmt">// NOT background-color!</span>
+el.style.fontSize = <span class="str">"20px"</span>;
+
+<span class="cmt">// Method 2: setAttribute</span>
+el.<span class="fn">setAttribute</span>(<span class="str">"style"</span>, <span class="str">"color:red"</span>);
+
+<span class="cmt">// Method 3: classList (best for toggles!)</span>
+el.classList.<span class="fn">add</span>(<span class="str">"active"</span>);      <span class="cmt">// add class</span>
+el.classList.<span class="fn">remove</span>(<span class="str">"active"</span>);   <span class="cmt">// remove class</span>
+el.classList.<span class="fn">toggle</span>(<span class="str">"active"</span>);   <span class="cmt">// toggle on/off</span>
+el.classList.<span class="fn">contains</span>(<span class="str">"active"</span>); <span class="cmt">// check if has class</span>
+
+<span class="cmt">// ❌ FAKE methods (don't exist):</span>
+<span class="cmt">// el.changeStyle("color","red")  ← FAKE</span>
+<span class="cmt">// el.css("color","red")           ← FAKE (that's jQuery!)</span></pre></div>
+    </div>
+  </div>
+
+  <!-- Events -->
+  <div class="chapter">
+    <div class="chapter-header js-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag js">JS</span>
+        <span class="ch-title">03 — Events: onclick, addEventListener, onchange</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">Events are actions that happen: user clicks, types, submits a form. JavaScript listens and reacts.</div>
+      <div class="code-wrap"><div class="code-label">HTML + JS</div><pre><span class="cmt">&lt;!-- Method 1: HTML attribute (onclick) --&gt;</span>
+<span class="tag-c">&lt;button</span> <span class="attr">onclick</span>=<span class="str">"sayHello()"</span><span class="tag-c">&gt;</span>Click me<span class="tag-c">&lt;/button&gt;</span>
+<span class="tag-c">&lt;input</span> <span class="attr">onchange</span>=<span class="str">"doSomething()"</span> <span class="attr">type</span>=<span class="str">"text"</span><span class="tag-c">/&gt;</span>
+<span class="tag-c">&lt;form</span> <span class="attr">onsubmit</span>=<span class="str">"handleSubmit()"</span><span class="tag-c">&gt;&lt;/form&gt;</span>
+
+<span class="cmt">// Method 2: addEventListener (best practice!)</span>
+<span class="kw">const</span> btn = document.<span class="fn">getElementById</span>(<span class="str">'myBtn'</span>);
+btn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  alert(<span class="str">'Button clicked!'</span>);
+});
+
+<span class="cmt">// Arrow function version</span>
+btn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, () => {
+  console.<span class="fn">log</span>(<span class="str">'clicked'</span>);
+});</pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q10 (2025):</span> Valid event triggers: <code>onclick</code> attribute, <code>addEventListener("click",...)</code>, <code>onchange</code> on inputs, <code>onsubmit</code> on forms. INVALID: <code>document.onhover</code> — there's no "onhover" event!</div>
+    </div>
+  </div>
+
+  <!-- Arrays & Loops -->
+  <div class="chapter">
+    <div class="chapter-header js-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag js">JS</span>
+        <span class="ch-title">04 — Arrays, Loops & Functions</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-title">Array Methods</div>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="kw">const</span> fruits = [<span class="str">'apple'</span>, <span class="str">'banana'</span>];
+
+fruits.<span class="fn">push</span>(<span class="str">'cherry'</span>);   <span class="cmt">// add to END → returns new length ✅</span>
+fruits.<span class="fn">pop</span>();            <span class="cmt">// remove from END</span>
+fruits.<span class="fn">unshift</span>(<span class="str">'mango'</span>); <span class="cmt">// add to BEGINNING</span>
+fruits.<span class="fn">shift</span>();          <span class="cmt">// remove from BEGINNING</span>
+fruits.<span class="fn">concat</span>([<span class="str">'date'</span>]); <span class="cmt">// merge arrays (returns new array)</span>
+
+<span class="cmt">// Looping over arrays</span>
+<span class="kw">const</span> letters = <span class="kw">new</span> <span class="fn">Set</span>([<span class="str">'a'</span>, <span class="str">'b'</span>, <span class="str">'c'</span>]);
+<span class="kw">for</span> (<span class="kw">let</span> letter <span class="kw">of</span> letters) { <span class="cmt">// ✅ "of" for values</span>
+  console.<span class="fn">log</span>(letter);
+}
+<span class="kw">for</span> (<span class="kw">let</span> i <span class="kw">in</span> letters) {   <span class="cmt">// ❌ "in" gives indexes/keys not values</span>
+  console.<span class="fn">log</span>(i);         <span class="cmt">// (for..in is for OBJECTS)</span>
+}
+
+<span class="cmt">// while vs do...while</span>
+<span class="kw">while</span> (condition) {
+  <span class="cmt">// checks BEFORE running — may run 0 times</span>
+}
+
+<span class="kw">do</span> {
+  <span class="cmt">// runs FIRST, checks after — runs AT LEAST once</span>
+} <span class="kw">while</span> (condition);</pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q35 (2024):</span> <code>array.push()</code> adds to the END and returns the NEW LENGTH. Pop removes from end. Shift removes from beginning. Unshift adds to beginning.</div>
+      <div class="concept-title">Functions</div>
+      <div class="code-wrap"><div class="code-label">JS</div><pre><span class="cmt">// Regular function declaration</span>
+<span class="kw">function</span> <span class="fn">greet</span>(name) {
+  <span class="kw">return</span> <span class="str">"Hello, "</span> + name;  <span class="cmt">// return is optional</span>
+}
+
+<span class="cmt">// Functions can be inside other functions</span>
+<span class="kw">function</span> <span class="fn">outer</span>() {
+  <span class="kw">function</span> <span class="fn">inner</span>() { }  <span class="cmt">// ✅ completely valid!</span>
+}
+
+<span class="cmt">// Functions can be assigned to variables</span>
+<span class="kw">const</span> sayHi = <span class="kw">function</span>() { }; <span class="cmt">// ✅ valid!</span>
+<span class="kw">const</span> arrow = () => { };       <span class="cmt">// ✅ arrow function</span>
+
+<span class="cmt">// ❌ Functions don't NEED to return a value</span>
+<span class="cmt">// ❌ Arguments are OPTIONAL</span>
+<span class="cmt">// ❌ Function names don't start with special characters</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ RESPONSIVE PAGE -->
+<div class="page" id="resp-page">
+  <div class="section-title">📱 Responsive Design & Media Queries</div>
+
+  <div class="chapter open">
+    <div class="chapter-header resp-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag resp">RESP</span>
+        <span class="ch-title">01 — What is Responsive Design?</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text"><strong>Responsive design</strong> means your website looks good on ALL screen sizes — from a tiny phone to a large desktop monitor. It uses flexible layouts, images, and CSS media queries.</div>
+      <div class="info-box def"><span class="box-icon">📌</span> The <strong>3 pillars of responsive design:</strong> 1. Fluid grids (% widths instead of px). 2. Flexible images. 3. Media queries.</div>
+      <div class="concept-title">The Viewport Meta Tag — MANDATORY!</div>
+      <div class="code-wrap"><div class="code-label">HTML</div><pre><span class="cmt">&lt;!-- WITHOUT this, mobile browsers show desktop size zoomed out --&gt;</span>
+<span class="tag-c">&lt;meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span>
+      <span class="attr">content</span>=<span class="str">"width=device-width, initial-scale=1.0"</span><span class="tag-c">/&gt;</span>
+
+<span class="cmt">&lt;!-- width=device-width: page width = screen width --&gt;</span>
+<span class="cmt">&lt;!-- initial-scale=1.0: don't zoom in/out by default --&gt;</span></pre></div>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q17 (2025):</span> The viewport meta tag: ✅ controls how page is scaled on mobile, ✅ allows responsive layout, ✅ exact syntax as above. ❌ NOT only for desktop! ❌ Without it, most mobiles show the page in desktop mode (zoomed out).</div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-header resp-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag resp">RESP</span>
+        <span class="ch-title">02 — Media Queries: @media</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-text">Media queries apply CSS rules ONLY when specific conditions are met (screen size, device type, etc.).</div>
+      <div class="code-wrap"><div class="code-label">CSS</div><pre><span class="cmt">/* Mobile-first: write default styles for SMALL screens */</span>
+<span class="sel">.container</span> {
+  <span class="prop">flex-direction</span>: <span class="val">column</span>;  <span class="cmt">/* mobile: stack vertically */</span>
+}
+
+<span class="cmt">/* Tablet: apply when screen is 768px or WIDER */</span>
+<span class="sel">@media</span> (<span class="prop">min-width</span>: <span class="val">768px</span>) {
+  <span class="sel">.container</span> { <span class="prop">flex-direction</span>: <span class="val">row</span>; }
+}
+
+<span class="cmt">/* Desktop */</span>
+<span class="sel">@media</span> (<span class="prop">min-width</span>: <span class="val">1024px</span>) {
+  <span class="sel">.sidebar</span> { <span class="prop">display</span>: <span class="val">block</span>; }
+}
+
+<span class="cmt">/* Dark mode preference */</span>
+<span class="sel">@media</span> (<span class="prop">prefers-color-scheme</span>: <span class="val">dark</span>) {
+  <span class="sel">:root</span> { <span class="prop">--bg</span>: <span class="val">#0a0f14</span>; }
+}
+
+<span class="cmt">/* You can also combine conditions */</span>
+<span class="sel">@media</span> (<span class="prop">min-width</span>: <span class="val">600px</span>) <span class="kw">and</span> (<span class="prop">max-width</span>: <span class="val">1024px</span>) {
+  <span class="cmt">/* tablet ONLY */</span>
+}</pre></div>
+      <div class="concept-title">Common Breakpoints</div>
+      <table class="ref-table">
+        <tr><th>Device</th><th>Width Range</th><th>Approach</th></tr>
+        <tr><td>Mobile S</td><td>&lt; 480px</td><td>Default (mobile-first)</td></tr>
+        <tr><td>Mobile L</td><td>480–767px</td><td>@media (min-width: 480px)</td></tr>
+        <tr><td>Tablet</td><td>768–1023px</td><td>@media (min-width: 768px)</td></tr>
+        <tr><td>Laptop</td><td>1024–1279px</td><td>@media (min-width: 1024px)</td></tr>
+        <tr><td>Desktop</td><td>1280px+</td><td>@media (min-width: 1280px)</td></tr>
+      </table>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q19 (2025):</span> Valid media query features: <code>max-width</code>, <code>min-height</code>, <code>device-pixel-ratio</code>, <code>aspect-ratio</code>. Valid: <code>prefers-color-scheme</code>. NOTE: <code>screen-orientation</code> is valid but usually written as <code>orientation</code>.</div>
+    </div>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-header resp-ch" onclick="toggleChapter(this)">
+      <div class="ch-title-row">
+        <span class="ch-tag resp">RESP</span>
+        <span class="ch-title">03 — Touch-Friendly Design & Pixels/PPI</span>
+      </div>
+      <span class="ch-arrow">▼</span>
+    </div>
+    <div class="chapter-body">
+      <div class="concept-title">Touch Target Best Practices</div>
+      <table class="ref-table">
+        <tr><th>Rule</th><th>Correct?</th></tr>
+        <tr><td>Buttons should be at least 48×48 pixels</td><td>✅ Correct (2025 exam says 48px)</td></tr>
+        <tr><td>Tap targets need enough spacing between them</td><td>✅ Correct</td></tr>
+        <tr><td>Hover effects are essential on mobile</td><td>❌ Wrong — mobile has no mouse!</td></tr>
+        <tr><td>Use larger font sizes on smaller screens</td><td>✅ Correct</td></tr>
+        <tr><td>Place important buttons near screen edges</td><td>❌ Avoid — hard to reach!</td></tr>
+      </table>
+      <div class="concept-title">Pixels & PPI (Resolution)</div>
+      <table class="ref-table">
+        <tr><th>Term</th><th>Definition</th></tr>
+        <tr><td>Pixel</td><td>Smallest unit of a digital image or display</td></tr>
+        <tr><td>Resolution</td><td>Total number of pixels in a display (e.g., 1920×1080)</td></tr>
+        <tr><td>PPI (Pixels Per Inch)</td><td>Measures pixel density of a display</td></tr>
+        <tr><td>DPI (Dots Per Inch)</td><td>Used in PRINTING — similar to PPI but not the same!</td></tr>
+      </table>
+      <div class="info-box exam"><span class="box-icon">⚠️ EXAM Q27 (2024):</span> ✅ Resolution = total pixels. ✅ PPI = pixel density. ✅ Pixel = smallest unit. ❌ PPI and DPI are NOT the same (different contexts). ❌ Resolution ≠ PPI.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ EXAMS -->
+<div class="page" id="exam1-page"></div>
+<div class="page" id="exam2-page"></div>
+<div class="page" id="exam3-page"></div>
+
+<script>
+// ── THEME TOGGLE ──
+function toggleTheme() {
+  const body = document.body;
+  const btn = document.querySelector('.theme-btn');
+  if (body.dataset.theme === 'light') {
+    body.dataset.theme = 'dark';
+    btn.textContent = '☀️ Light';
+  } else {
+    body.dataset.theme = 'light';
+    btn.textContent = '🌙 Dark';
+  }
+}
+
+// ── PAGE NAVIGATION ──
+function showPage(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+
+// ── CHAPTER TOGGLE ──
+function toggleChapter(header) {
+  const chapter = header.parentElement;
+  chapter.classList.toggle('open');
+}
+
+// ── FLEXBOX DEMO ──
+function updateFlex(prop, val) {
+  document.getElementById('flex-demo').style[prop] = val;
+}
+
+// ── SCORE TRACKER ──
+let totalCorrect = 0, totalAnswered = 0;
+function updateScore(delta, total) {
+  totalCorrect += delta;
+  totalAnswered += total;
+  document.getElementById('total-score').textContent =
+    '🎯 ' + totalCorrect + ' / ' + totalAnswered;
+}
+
+// ═══════════════ EXAM DATA ═══════════════
+const exams = [
+  {
+    title: "Practice Exam 1 — HTML & CSS Focus",
+    duration: 45,
+    questions: [
+      {
+        text: "Which of the following are valid HTML5 semantic elements?",
+        note: "May have 1–5 correct answers. Each wrong choice = -0.25 pts",
+        options: ["<header>","<article>","<div>","<footer>","<sidebar>"],
+        correct: [0,1,3],
+        explanation: "<header>, <article>, <footer> are semantic HTML5 elements. <div> is a non-semantic generic container. <sidebar> does NOT exist in HTML5 — the correct tag is <aside>."
+      },
+      {
+        text: "Which of the following are valid attributes for an HTML <img> tag?",
+        note: "",
+        options: ["src","alt","href","value","height"],
+        correct: [0,1,4],
+        explanation: "Valid img attributes: src (source URL), alt (alternate text), height (and width). href belongs to <a> tags. value belongs to input/button elements."
+      },
+      {
+        text: "Which HTML elements are inline elements?",
+        note: "",
+        options: ["<span>","<div>","<a>","<section>","<img>"],
+        correct: [0,2,4],
+        explanation: "<span>, <a>, and <img> are inline elements — they flow within text. <div> and <section> are block elements — they start on a new line and take full width."
+      },
+      {
+        text: "Which of the following are true about the CSS box model?",
+        note: "",
+        options: ["padding","color","margin","text-align","border"],
+        correct: [0,2,4],
+        explanation: "The CSS box model has 4 parts: Content, Padding (space between content and border), Border, and Margin (space outside the border). 'color' and 'text-align' are text styling properties, NOT part of the box model."
+      },
+      {
+        text: "Which CSS properties can be used to create responsive web designs?",
+        note: "",
+        options: ["media queries","flex","grid","text-transform","z-index"],
+        correct: [0,1,2],
+        explanation: "Media queries, Flexbox, and CSS Grid are all responsive design tools. text-transform changes text case. z-index controls stacking order — neither is responsive."
+      },
+      {
+        text: "Which of the following correctly describe position: absolute?",
+        note: "",
+        options: [
+          "The element is removed from normal document flow",
+          "It is positioned relative to its closest positioned ancestor",
+          "It always scrolls with the page",
+          "If no positioned ancestor exists, it is relative to <body>",
+          "It floats automatically"
+        ],
+        correct: [0,1,3],
+        explanation: "position:absolute removes the element from flow, positions it relative to nearest ancestor with position!=static. If no such ancestor exists, it's relative to the <body>. It does NOT scroll with the page (that's static). It does NOT float."
+      },
+      {
+        text: "Complete the CSS to center flex items both horizontally AND vertically:\n.container { display: flex; height: 100vh; /* ??? */ }",
+        note: "Select ALL that apply",
+        options: [
+          "justify-content: center;",
+          "align-items: center;",
+          "flex-direction: column;",
+          "text-align: center;",
+          "padding: 20px;"
+        ],
+        correct: [0,1],
+        explanation: "justify-content: center centers on the MAIN axis (horizontal for row). align-items: center centers on the CROSS axis (vertical for row). Together they center items both ways. text-align and padding don't center flex items. flex-direction: column alone doesn't center."
+      },
+      {
+        text: "Which of the following CSS properties can be used to change the layout of elements?",
+        note: "",
+        options: ["display","position","text-decoration","flex","font-weight"],
+        correct: [0,1,3],
+        explanation: "display (changes how element renders), position (changes placement), and flex (enables flexbox layout) all affect layout. text-decoration styles text underlines. font-weight changes text thickness."
+      },
+      {
+        text: "Which CSS properties are part of the box model?",
+        note: "",
+        options: ["padding","color","margin","text-align","border"],
+        correct: [0,2,4],
+        explanation: "The box model consists of: padding (inner space), border (the outline), and margin (outer space). The CONTENT area is also part but has no single 'content' property. color and text-align are typography properties."
+      },
+      {
+        text: "Which statements are true about position: static?",
+        note: "",
+        options: [
+          "It is the default position for all elements",
+          "top, left, bottom, right values have no effect",
+          "The element is floated",
+          "It stays at the top of the page",
+          "It participates in the normal document flow"
+        ],
+        correct: [0,1,4],
+        explanation: "position:static is the default. top/left/right/bottom have NO effect on static elements. It stays in normal document flow. It does NOT float (float is a different property). It doesn't 'stay at top' — it flows normally."
+      },
+      {
+        text: "Which of the following can be used in CSS media queries?",
+        note: "",
+        options: ["max-width","min-height","device-pixel-ratio","orientation","aspect-ratio"],
+        correct: [0,1,2,3,4],
+        explanation: "All of these are valid media query features! max-width, min-height, device-pixel-ratio (for retina screens), orientation (portrait/landscape), and aspect-ratio are all standard CSS media features."
+      },
+      {
+        text: "Which is NOT a valid HTML5 element?",
+        note: "Identify the FAKE tags",
+        options: ["<nav>","<maincontent>","<aside>","<box>","<footer>"],
+        correct: [1,3],
+        explanation: "<nav>, <aside>, and <footer> are valid HTML5 semantic elements. <maincontent> and <box> do NOT exist in HTML5. Use <main> for main content and <div> for generic boxes."
+      },
+      {
+        text: "Which of the following correctly describe the purpose of semantic HTML elements?",
+        note: "",
+        options: [
+          "Improve accessibility for screen readers",
+          "Help search engines understand content",
+          "Make code more readable and meaningful",
+          "Automatically apply CSS styles",
+          "Reduce the need for CSS"
+        ],
+        correct: [0,1,2],
+        explanation: "Semantic HTML improves accessibility (screen readers know what each section is), helps SEO (Google understands structure), and makes code readable. Semantic elements do NOT automatically apply CSS styles, and they don't reduce the need for CSS."
+      },
+      {
+        text: "Which CSS technique allows you to override styles in the cascade?",
+        note: "",
+        options: ["Using the <link> tag","Defining CSS variables","HTML attributes","Using !important","CSS Grid"],
+        correct: [3],
+        explanation: "!important overrides ALL other CSS rules regardless of specificity or cascade order. The <link> tag includes external CSS normally. CSS variables change values but don't override specificity. HTML attributes can add inline styles but not override the cascade globally."
+      },
+      {
+        text: "Which CSS properties control flexbox item alignment?",
+        note: "",
+        options: ["justify-content","align-items","float","flex-direction","z-index"],
+        correct: [0,1,3],
+        explanation: "justify-content aligns items on the main axis. align-items aligns on the cross axis. flex-direction sets row or column direction. float and z-index are unrelated to flexbox alignment."
+      }
+    ]
+  },
+  {
+    title: "Practice Exam 2 — JavaScript Focus",
+    duration: 45,
+    questions: [
+      {
+        text: "Which of the following are valid JavaScript data types?",
+        note: "",
+        options: ["Boolean","Float","Null","Object","Undefined"],
+        correct: [0,2,3,4],
+        explanation: "Valid JS data types: Boolean (true/false), Null, Object (arrays, objects), Undefined (declared but no value). 'Float' does NOT exist in JavaScript — numbers are just 'number' type (both integers and decimals)."
+      },
+      {
+        text: "Which JavaScript methods can be used to select HTML elements?",
+        note: "",
+        options: [
+          "document.getElementById()",
+          "document.querySelector()",
+          "document.modifyElement()",
+          "document.getElementsByClassName()",
+          "window.selectElement()"
+        ],
+        correct: [0,1,3],
+        explanation: "Valid DOM selection methods: getElementById (by ID), querySelector (CSS selector, first match), getElementsByClassName (by class). 'modifyElement' and 'window.selectElement' do NOT exist in JavaScript."
+      },
+      {
+        text: "Which JavaScript statements can change the content of an HTML element?",
+        note: "",
+        options: [
+          "element.innerHTML = 'Hello'",
+          "element.textContent = 'Hello'",
+          "element.value = 'Hello'",
+          "element.setText('Hello')",
+          "document.write('Hello')"
+        ],
+        correct: [0,1,2],
+        explanation: "innerHTML sets HTML content (can include tags). textContent sets text only. value sets input field content. element.setText() does NOT exist. document.write() exists but replaces entire page content — avoid it."
+      },
+      {
+        text: "Which JavaScript properties/methods change the style of an HTML element?",
+        note: "",
+        options: [
+          "element.style.color = 'red'",
+          "element.setAttribute('style', 'color:red')",
+          "element.classList.add('my-style')",
+          "element.changeStyle('color', 'red')",
+          "element.css('color', 'red')"
+        ],
+        correct: [0,1,2],
+        explanation: "element.style.color sets style directly. setAttribute can set the entire style attribute. classList.add adds a CSS class. element.changeStyle() and element.css() do NOT exist in native JavaScript (the latter is jQuery syntax)."
+      },
+      {
+        text: "Which of the following can trigger JavaScript to modify HTML?",
+        note: "",
+        options: [
+          "onclick attribute in HTML",
+          "addEventListener('click', ...)",
+          "document.onhover = ...",
+          "onchange event on input fields",
+          "onsubmit event on forms"
+        ],
+        correct: [0,1,3,4],
+        explanation: "onclick, addEventListener, onchange, and onsubmit are all valid event triggers. 'document.onhover' does NOT exist — the correct event is 'mouseover' and it's used as element.onmouseover or addEventListener('mouseover')."
+      },
+      {
+        text: "Which statements are true about var, let, and const?",
+        note: "",
+        options: [
+          "You can't change the value of a const after it's declared",
+          "const must be initialized when declared",
+          "var can be updated after declaration",
+          "let can be updated after declaration",
+          "let is advised for variables that will change"
+        ],
+        correct: [0,1,2,3,4],
+        explanation: "ALL 5 are correct! const: immutable after declaration AND must be initialized. var and let: both can be updated. Best practice: use let for changing variables, const for fixed values."
+      },
+      {
+        text: "Which JavaScript method adds elements to the END of an array and returns the new length?",
+        note: "",
+        options: ["array.pop()","array.shift()","array.unshift()","array.push()","array.concat()"],
+        correct: [3],
+        explanation: "array.push() adds to the END and returns the NEW LENGTH. pop() removes from end. shift() removes from beginning. unshift() adds to beginning. concat() merges arrays and returns a new array."
+      },
+      {
+        text: "What is the main difference between while and do...while loops?",
+        note: "",
+        options: [
+          "A while loop checks condition BEFORE executing",
+          "A do...while loop checks condition BEFORE executing",
+          "A do...while loop checks condition AFTER executing",
+          "A while loop always executes at least once",
+          "A do...while loop may not execute if condition is false"
+        ],
+        correct: [0,2],
+        explanation: "while: checks condition FIRST, may run 0 times. do...while: runs the body FIRST, THEN checks condition — so it ALWAYS runs at least once. Options B, D, E are false."
+      },
+      {
+        text: "Which statements are true about functions in JavaScript?",
+        note: "",
+        options: [
+          "Functions must always return a value",
+          "A function must have arguments",
+          "Functions can be defined inside other functions",
+          "A function name must start with a special character",
+          "Functions can be assigned to variables"
+        ],
+        correct: [2,4],
+        explanation: "Functions CAN be inside other functions (nested functions). Functions CAN be assigned to variables (function expressions). Functions do NOT need to return a value. Arguments are optional. Function names must start with a letter or underscore, NOT a special character."
+      },
+      {
+        text: "Which ways to loop over a Set are correct? const letters = new Set(['a','b','c']);",
+        note: "",
+        options: [
+          "for (let letter in letters) { console.log(letter); }",
+          "for (let letter of letters) { console.log(letter); }",
+          "letters.each(letter => console.log(letter))",
+          "letters.map(letter => console.log(letter));",
+          "letters.filter(letter => console.log(letter));"
+        ],
+        correct: [1],
+        explanation: "for...of iterates over VALUES — correct for Sets and Arrays. for...in iterates over KEYS/indexes — doesn't work well with Sets. letters.each() doesn't exist. map() and filter() work on Arrays, not Sets directly."
+      },
+      {
+        text: "Which of the following are true about changing HTML and CSS using JavaScript?",
+        note: "",
+        options: [
+          "JavaScript can change the content of an HTML element",
+          "JavaScript can change the style of an HTML element",
+          "JavaScript can hide HTML elements",
+          "JavaScript cannot add new HTML elements",
+          "JavaScript cannot change the class of an HTML element"
+        ],
+        correct: [0,1,2],
+        explanation: "JavaScript CAN: change content (innerHTML/textContent), change styles (style property/classList), and hide elements (style.display='none' or classList). JavaScript CAN also add new elements (createElement + appendChild) and CAN change classes (classList). Options D and E are FALSE."
+      },
+      {
+        text: "How do you get all HTML elements sharing the same class name using JavaScript?",
+        note: "",
+        options: [
+          "document.getElementsByTagName('classname')",
+          "document.querySelector('.class-name')",
+          "document.getElementById('class-name')",
+          "document.getElementsByClassName('class-name')",
+          "document.querySelector('#class-name')"
+        ],
+        correct: [3],
+        explanation: "getElementsByClassName() returns ALL elements with that class. querySelector('.name') returns only the FIRST match. getElementById() gets by ID (unique). querySelector('#name') gets by ID (single). getElementsByTagName() gets by tag type (div, p, etc)."
+      },
+      {
+        text: "Which of the following are true about position: sticky?",
+        note: "",
+        options: [
+          "It acts like relative until it reaches a scroll threshold, then sticks",
+          "It sticks within its parent container",
+          "It requires a top, left, bottom, or right value to work",
+          "It always stays at the top of the page",
+          "It works even if the parent has overflow: hidden"
+        ],
+        correct: [0,1,2],
+        explanation: "sticky: flows normally until scroll threshold, then sticks like fixed — but WITHIN its parent container. It REQUIRES top/bottom/left/right to know where to stick. It doesn't always stay at top. It does NOT work if parent has overflow:hidden (common trap!)."
+      },
+      {
+        text: "Which statements are true about float in CSS?",
+        note: "",
+        options: [
+          "Floated elements are removed from normal flow",
+          "Text can wrap around floated elements",
+          "Floated elements always center in the parent",
+          "You often need clear: both to avoid layout issues",
+          "Floats are commonly used to create columns"
+        ],
+        correct: [0,1,3,4],
+        explanation: "Float: removes from flow (true), text wraps around (true — that's the point!), need clear:both after (true — to avoid overflow), used for columns (older technique). Float does NOT automatically center elements."
+      },
+      {
+        text: "Which techniques improve button usability on small screens?",
+        note: "",
+        options: [
+          "Increase padding around the button",
+          "Use media queries to adjust button size",
+          "Place multiple buttons very close together",
+          "Use larger font size on smaller screens",
+          "Avoid fixed widths for buttons"
+        ],
+        correct: [0,1,3,4],
+        explanation: "Good mobile button practices: more padding (bigger tap area), media queries for size adjustment, larger fonts for readability, flexible widths. AVOID placing buttons very close together — accidental taps!"
+      }
+    ]
+  },
+  {
+    title: "Practice Exam 3 — Mixed (Full Simulation)",
+    duration: 50,
+    questions: [
+      {
+        text: "Which of the following are valid HTTP request methods?",
+        note: "",
+        options: ["GET","POST","PUT","FETCH","DELETE"],
+        correct: [0,1,2,4],
+        explanation: "Valid HTTP methods: GET (retrieve), POST (create/send), PUT (update), DELETE (delete). FETCH is a JavaScript browser API function (window.fetch()), NOT an HTTP method."
+      },
+      {
+        text: "Which of the following characteristics correctly describe block-level vs inline elements?",
+        note: "",
+        options: [
+          "Inline elements start on a new line",
+          "Block-level elements take up only as much width as necessary",
+          "Block-level elements always start on a new line",
+          "Inline elements can have width and height properties set",
+          "Block-level elements cannot have padding or margins"
+        ],
+        correct: [2],
+        explanation: "Only ONE is correct: Block elements ALWAYS start on a new line. Inline elements do NOT start new lines. Block elements take FULL width (not minimal). Inline elements IGNORE width and height. Block elements CAN have padding and margins."
+      },
+      {
+        text: "Which of the following pairs correctly classify the element type?",
+        note: "",
+        options: [
+          "<h2> — block",
+          "<label> — inline",
+          "<textarea> — inline",
+          "<button> — inline",
+          "<nav> — block"
+        ],
+        correct: [0,1,3,4],
+        explanation: "<h2> is block. <label> is inline. <textarea> is actually a block-level replaced element (takes full width). <button> is inline. <nav> is block. So A, B, D, E are correct. C (<textarea> as inline) is incorrect."
+      },
+      {
+        text: "Which of the following are true about CSS Flexbox?",
+        note: "",
+        options: [
+          "It allows responsive layout design",
+          "justify-content controls the vertical alignment of items",
+          "align-items aligns items along the cross axis",
+          "Flexbox is a one-dimensional layout model",
+          "Flexbox only works with inline elements"
+        ],
+        correct: [0,2,3],
+        explanation: "Flexbox IS responsive-friendly. align-items DOES control cross axis. Flexbox IS one-dimensional (row OR column). justify-content controls the MAIN axis (horizontal by default), NOT vertical. Flexbox works on any elements, not only inline."
+      },
+      {
+        text: "Which of the following are valid ways to include CSS in a webpage?",
+        note: "",
+        options: [
+          "Inline styles using style attribute",
+          "Using <link> to an external stylesheet",
+          "Embedding CSS in <script>",
+          "Internal styles with <style> tag",
+          "Using @import in an external stylesheet"
+        ],
+        correct: [0,1,3,4],
+        explanation: "Valid: inline style attribute, <link> external, <style> internal, @import. INVALID: CSS inside <script> — scripts are for JavaScript, not CSS!"
+      },
+      {
+        text: "Which CSS properties are used to control spacing around elements?",
+        note: "",
+        options: ["margin","padding","font-size","border-spacing","text-align"],
+        correct: [0,1,3],
+        explanation: "margin (outside spacing), padding (inside spacing), border-spacing (space between table cells). font-size changes text size. text-align aligns text horizontally."
+      },
+      {
+        text: "Complete the CSS to fix an element to the bottom-right corner of the viewport:",
+        note: ".element { position: fixed; /* ??? */ }",
+        options: ["bottom: 0;","top: 0;","right: 0;","left: 0;","margin: auto;"],
+        correct: [0,2],
+        explanation: "To fix to bottom-right: position:fixed, bottom:0 (distance from bottom = 0), right:0 (distance from right = 0). top:0 would fix to top. left:0 would fix to left. margin:auto doesn't work with fixed positioning for corners."
+      },
+      {
+        text: "Which of the following are true about the meta viewport tag?",
+        note: "",
+        options: [
+          "It controls how a page is scaled on mobile devices",
+          "It allows responsive layout behavior",
+          "It's written as: <meta name='viewport' content='width=device-width, initial-scale=1.0'>",
+          "It is only necessary for desktop screens",
+          "Without it, most mobile devices will display the page in desktop mode"
+        ],
+        correct: [0,1,2,4],
+        explanation: "The viewport meta tag: controls mobile scaling, enables responsive behavior, exact syntax in C is correct, and without it mobiles show desktop layout zoomed out. It is NOT for desktop — it's specifically for mobile devices!"
+      },
+      {
+        text: "Which common practices are used in responsive design?",
+        note: "",
+        options: [
+          "Using meta viewport tag",
+          "Designing for different screen sizes",
+          "Fixed pixel widths for all elements",
+          "Using flexible grids and layouts",
+          "Ignoring mobile-first design"
+        ],
+        correct: [0,1,3],
+        explanation: "Responsive practices: viewport meta tag, designing for all sizes, flexible/fluid layouts. AVOID: fixed pixel widths (use % or fr units instead) and NEVER ignore mobile-first (mobile has more users than desktop now)."
+      },
+      {
+        text: "Which of the following are valid CSS position values?",
+        note: "",
+        options: ["static","fixed","float","relative","sticky"],
+        correct: [0,1,3,4],
+        explanation: "Valid position values: static (default), fixed (viewport-relative), relative (offset from normal position), sticky (hybrid). 'float' is a SEPARATE CSS property (float: left/right), NOT a value for the position property!"
+      },
+      {
+        text: "Which statements are true about the interaction between browsers and servers?",
+        note: "",
+        options: [
+          "Clients send requests to servers, servers send responses back",
+          "Browsers can render HTML, CSS, and JavaScript received from the server",
+          "Servers initiate communication with clients",
+          "Clients can only request static content from servers",
+          "Browsers cannot execute scripts received from the server"
+        ],
+        correct: [0,1],
+        explanation: "True: Clients (browsers) SEND REQUESTS, servers RESPOND. Browsers CAN render HTML/CSS/JS. False: Servers do NOT initiate (clients always start). Clients can request dynamic content. Browsers CAN execute JavaScript — that's its whole purpose!"
+      },
+      {
+        text: "Which JavaScript statements are true about for...in vs for...of?",
+        note: "",
+        options: [
+          "for...of iterates over values of iterable objects (arrays, sets)",
+          "for...in iterates over property keys of objects",
+          "for...of works correctly on Sets",
+          "for...in is the best way to loop over arrays",
+          "Both for...in and for...of are identical"
+        ],
+        correct: [0,1,2],
+        explanation: "for...of: gets VALUES — perfect for arrays and Sets. for...in: gets KEYS/indexes — designed for objects. for...of works on Sets. for...in on arrays gives string indexes ('0','1','2') not ideal for array iteration. They are NOT identical."
+      },
+      {
+        text: "Complete CSS code: ensure element appears ABOVE all others:\n.element { position: relative; /* ??? */ }",
+        note: "",
+        options: ["z-index: 999;","z-index: -1;","z-index: 0;","z-index: 1;","display: block;"],
+        correct: [0],
+        explanation: "z-index: 999 gives it a very high stacking order, placing it above others. z-index only works on positioned elements (position != static). z-index:-1 would put it BEHIND. z-index:0 or 1 might not be high enough. display:block doesn't control stacking."
+      },
+      {
+        text: "Which of the following correctly describe what the CSS display property values do?",
+        note: "",
+        options: [
+          "display:none removes element from layout AND makes it invisible",
+          "display:flex makes container's children flex items",
+          "display:inline-block respects width and height like block but flows inline",
+          "visibility:hidden and display:none have identical effects",
+          "display:grid enables 2D layout"
+        ],
+        correct: [0,1,2,4],
+        explanation: "display:none: removes from layout AND invisible. display:flex: children become flex items. display:inline-block: flows inline but respects size. display:grid: enables 2D layout. visibility:hidden makes element invisible but it STILL TAKES SPACE — different from display:none!"
+      },
+      {
+        text: "Which features of responsive design ensure good mobile user experience?",
+        note: "",
+        options: [
+          "Buttons at least 48×48 pixels",
+          "Tap targets with enough spacing",
+          "Hover effects as primary interaction",
+          "Readable font sizes on small screens",
+          "Using % or em for sizes instead of fixed px"
+        ],
+        correct: [0,1,3,4],
+        explanation: "Good mobile UX: 48×48px minimum tap targets, spacing between targets, readable fonts, flexible units. Hover effects are NOT primary on mobile — there's no mouse! Touch is the primary interaction on mobile."
+      }
+    ]
+  }
+];
+
+// ═══════════════ BUILD EXAMS ═══════════════
+function buildExam(exam, pageId, examIndex) {
+  const page = document.getElementById(pageId);
+  let timerInterval = null;
+  let secondsLeft = exam.duration * 60;
+
+  let html = `
+    <div class="exam-score-card" id="score-card-${examIndex}" style="display:none">
+      <div class="score-big" id="score-big-${examIndex}">0/15</div>
+      <div class="score-label">Your Score</div>
+      <div class="score-grade" id="score-grade-${examIndex}"></div>
+    </div>
+    <div class="exam-bar">
+      <div class="exam-info">
+        <strong>${exam.title}</strong><br>
+        ${exam.questions.length} questions · ${exam.duration} min · −0.25 for one wrong · 0 for 2+ wrong
+      </div>
+      <div class="exam-actions">
+        <div class="timer" id="timer-${examIndex}">${formatTime(secondsLeft)}</div>
+        <button class="btn primary" onclick="submitExam(${examIndex})">✓ Submit All</button>
+        <button class="btn" onclick="resetExam(${examIndex})">↺ Reset</button>
+      </div>
+    </div>
+    <div class="progress-wrap"><div class="progress-fill" id="prog-${examIndex}" style="width:0%"></div></div>
+    <div id="questions-${examIndex}">
+  `;
+
+  exam.questions.forEach((q, qi) => {
+    html += `
+      <div class="quiz-q" id="q-${examIndex}-${qi}">
+        <div class="q-header">
+          <div class="q-num">${qi+1}</div>
+          <div>
+            <div class="q-text">${q.text.replace(/\n/g,'<br>')}</div>
+            ${q.note ? `<div class="q-note">${q.note}</div>` : ''}
+          </div>
+        </div>
+        <div class="q-options" id="opts-${examIndex}-${qi}">
+    `;
+    q.options.forEach((opt, oi) => {
+      html += `
+        <label class="q-opt" id="opt-${examIndex}-${qi}-${oi}">
+          <input type="checkbox" id="chk-${examIndex}-${qi}-${oi}" onchange="updateProgress(${examIndex})">
+          <span class="q-opt-text">${String.fromCharCode(65+oi)}. ${opt}</span>
+        </label>
+      `;
+    });
+    html += `
+        </div>
+        <div class="q-footer">
+          <button class="check-btn" onclick="checkQuestion(${examIndex}, ${qi})">Check Answer</button>
+          <span class="feedback" id="fb-${examIndex}-${qi}"></span>
+        </div>
+        <div class="q-explanation" id="exp-${examIndex}-${qi}">${q.explanation}</div>
+      </div>
+    `;
+  });
+
+  html += '</div>';
+  page.innerHTML = html;
+
+  // Start timer
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    const timerEl = document.getElementById(`timer-${examIndex}`);
+    if (timerEl) {
+      timerEl.textContent = formatTime(secondsLeft);
+      timerEl.className = 'timer' + (secondsLeft < 300 ? ' danger-time' : secondsLeft < 600 ? ' warn-time' : '');
+    }
+    if (secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      submitExam(examIndex);
+    }
+  }, 1000);
+
+  // Store timer ref
+  window[`timer_${examIndex}`] = timerInterval;
+}
+
+function formatTime(s) {
+  const m = Math.floor(s/60);
+  const sec = s % 60;
+  return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+}
+
+function updateProgress(examIndex) {
+  const exam = exams[examIndex];
+  let answered = 0;
+  exam.questions.forEach((q, qi) => {
+    const hasChecked = q.options.some((_, oi) => {
+      const chk = document.getElementById(`chk-${examIndex}-${qi}-${oi}`);
+      return chk && chk.checked;
+    });
+    if (hasChecked) answered++;
+  });
+  const pct = (answered / exam.questions.length) * 100;
+  const prog = document.getElementById(`prog-${examIndex}`);
+  if (prog) prog.style.width = pct + '%';
+}
+
+function checkQuestion(examIndex, qi) {
+  const exam = exams[examIndex];
+  const q = exam.questions[qi];
+  const selected = [];
+
+  q.options.forEach((_, oi) => {
+    const chk = document.getElementById(`chk-${examIndex}-${qi}-${oi}`);
+    if (chk && chk.checked) selected.push(oi);
+    // Lock the option
+    const lbl = document.getElementById(`opt-${examIndex}-${qi}-${oi}`);
+    if (chk) chk.disabled = true;
+    if (lbl) lbl.classList.add('locked');
+  });
+
+  // Color options
+  q.options.forEach((_, oi) => {
+    const lbl = document.getElementById(`opt-${examIndex}-${qi}-${oi}`);
+    if (!lbl) return;
+    const isCorrect = q.correct.includes(oi);
+    const isSelected = selected.includes(oi);
+    if (isCorrect && isSelected) lbl.classList.add('correct');
+    else if (!isCorrect && isSelected) lbl.classList.add('wrong');
+    else if (isCorrect && !isSelected) lbl.classList.add('missed');
+  });
+
+  // Calculate score for this question
+  const wrongSelected = selected.filter(oi => !q.correct.includes(oi));
+  const fb = document.getElementById(`fb-${examIndex}-${qi}`);
+  const exp = document.getElementById(`exp-${examIndex}-${qi}`);
+  if (exp) exp.classList.add('show');
+
+  const correctSelected = selected.filter(oi => q.correct.includes(oi));
+  if (wrongSelected.length === 0 && correctSelected.length === q.correct.length) {
+    if (fb) { fb.textContent = '✅ Perfect! +0.5 pts'; fb.className = 'feedback ok'; }
+  } else if (wrongSelected.length === 1) {
+    if (fb) { fb.textContent = '⚠️ One wrong: −0.25 pts'; fb.className = 'feedback partial'; }
+  } else if (wrongSelected.length >= 2) {
+    if (fb) { fb.textContent = '❌ 2+ wrong: 0 pts'; fb.className = 'feedback bad'; }
+  } else if (correctSelected.length < q.correct.length && wrongSelected.length === 0) {
+    if (fb) { fb.textContent = '⚠️ Missed some correct answers'; fb.className = 'feedback partial'; }
+  }
+
+  // Disable check button
+  const btn = document.querySelector(`#q-${examIndex}-${qi} .check-btn`);
+  if (btn) btn.disabled = true;
+}
+
+function submitExam(examIndex) {
+  const exam = exams[examIndex];
+  let totalScore = 0;
+  let maxScore = exam.questions.length * 0.5;
+
+  exam.questions.forEach((q, qi) => {
+    const selected = [];
+    q.options.forEach((_, oi) => {
+      const chk = document.getElementById(`chk-${examIndex}-${qi}-${oi}`);
+      if (chk && chk.checked) selected.push(oi);
+    });
+
+    // Force check each unanswered question
+    checkQuestion(examIndex, qi);
+
+    const wrongSelected = selected.filter(oi => !q.correct.includes(oi));
+    const correctSelected = selected.filter(oi => q.correct.includes(oi));
+    if (wrongSelected.length === 0 && correctSelected.length === q.correct.length) {
+      totalScore += 0.5;
+    } else if (wrongSelected.length === 1) {
+      totalScore += 0.25;
+    }
+  });
+
+  // Show score
+  const card = document.getElementById(`score-card-${examIndex}`);
+  const big = document.getElementById(`score-big-${examIndex}`);
+  const grade = document.getElementById(`score-grade-${examIndex}`);
+  if (card) card.style.display = 'block';
+  if (big) big.textContent = totalScore.toFixed(2) + ' / ' + maxScore.toFixed(1);
+
+  const pct = (totalScore / maxScore) * 100;
+  let gradeText = '';
+  if (pct >= 90) gradeText = '🏆 Excellent! Ready for the real exam!';
+  else if (pct >= 75) gradeText = '✅ Good work! Review the missed questions.';
+  else if (pct >= 60) gradeText = '⚠️ Needs more practice. Focus on weak areas.';
+  else gradeText = '❌ Keep studying! Review all chapters again.';
+  if (grade) grade.textContent = gradeText;
+
+  card.scrollIntoView({ behavior: 'smooth' });
+
+  // Stop timer
+  if (window[`timer_${examIndex}`]) clearInterval(window[`timer_${examIndex}`]);
+
+  updateScore(totalScore, maxScore);
+}
+
+function resetExam(examIndex) {
+  const exam = exams[examIndex];
+  const pageIds = ['exam1-page', 'exam2-page', 'exam3-page'];
+  buildExam(exam, pageIds[examIndex], examIndex);
+}
+
+// Build all exams
+buildExam(exams[0], 'exam1-page', 0);
+buildExam(exams[1], 'exam2-page', 1);
+buildExam(exams[2], 'exam3-page', 2);
+</script>
+</body>
+</html>
